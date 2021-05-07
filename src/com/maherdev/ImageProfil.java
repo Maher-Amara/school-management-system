@@ -12,7 +12,6 @@ public class ImageProfil {
     }
 
     private void delete(String filePath){
-        this.filePath = filePath;
     }
 
     void show(){

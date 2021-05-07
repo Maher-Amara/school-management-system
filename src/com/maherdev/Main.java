@@ -3,11 +3,15 @@ package com.maherdev;
 import java.util.Date;
 
 public class Main {
+    /*
+    * la composition (en UML assosiation 1-n) lobget X se comose de plusieurs obgets Y
+    *
+    */
     public static void main(String[] args) {
         Menu menu = new Menu();
         menu.mainLoop();
     }
-    
+
     public static void testEleve(){
         Adresse myAdress = new Adresse(34,"houssine bou zayen","kalaa sghira",4021,"sousse");
         ImageProfil imageProfil = new ImageProfil("C:\\Users\\Hp\\Desktop\\3 Info\\java project\\school-management-system\\profile-pic.jpg");

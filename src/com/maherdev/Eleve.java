@@ -31,6 +31,10 @@ public class Eleve extends Person{
     }
 
     public void facturer(){
-
+        /*
+        * facture mensuel a payer
+        * sellon les activiter quil partisipe
+        * et son niveau classe
+        * */
     }
 }
