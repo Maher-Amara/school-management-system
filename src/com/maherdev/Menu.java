@@ -3,10 +3,11 @@ package com.maherdev;
 import java.util.Scanner;
 
 public class Menu {
-
+    School school;
 
     public Menu(){
-
+        // initiation de l'ecole
+        this.school = new School();
     }
 
     protected int getUserChoice(){

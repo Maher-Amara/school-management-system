@@ -3,10 +3,7 @@ package com.maherdev;
 import java.util.Date;
 
 public class Main {
-    /*
-    * la composition (en UML assosiation 1-n) lobget X se comose de plusieurs obgets Y
-    *
-    */
+
     public static void main(String[] args) {
         Menu menu = new Menu();
         menu.mainLoop();

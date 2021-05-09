@@ -4,6 +4,7 @@ public class Activite {
     protected int code;
     protected Animateur animateur;
     protected String designation;
+    protected float fraisInscription;
 
     public Activite(){
 
