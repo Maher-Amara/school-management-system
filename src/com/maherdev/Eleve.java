@@ -3,17 +3,16 @@ package com.maherdev;
 import java.util.Date;
 
 public class Eleve extends Person{
-    protected String niveauScolaire;
+    protected Classe classe;
 
-
-    public Eleve(String nom, String prenom, Adresse adresse, Date dateNaissance, ImageProfil imageProfil,String niveauScolaire, Person pere, Person mere){
+    public Eleve(String nom, String prenom, Adresse adresse, Date dateNaissance, ImageProfil imageProfil,Classe classe, Person pere, Person mere){
         super(nom, prenom, adresse, dateNaissance, imageProfil, mere, pere);
-        this.niveauScolaire = niveauScolaire;
+        this.classe = classe;
     }
 
-    public void update(String nom, String prenom, Adresse adresse, Date dateNaissance, ImageProfil imageProfil,String niveauScolaire, Person mere, Person pere){
+    public void update(String nom, String prenom, Adresse adresse, Date dateNaissance, ImageProfil imageProfil,Classe classe, Person mere, Person pere){
         super.update(nom, prenom, adresse, dateNaissance, imageProfil, mere, pere);
-        this.niveauScolaire = niveauScolaire;
+        this.classe = classe;
     }
 
     public void show(){
