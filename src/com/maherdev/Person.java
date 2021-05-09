@@ -3,7 +3,8 @@ package com.maherdev;
 import java.util.Date;
 
 public class Person {
-    private int id = 0;
+    protected static int count = 0; // conteur
+    protected int id;
     protected int cin;
     protected String nom;
     protected String prenom;
@@ -17,13 +18,15 @@ public class Person {
 
     public Person(String nom,String prenom){
         // this is a student grand father or mother or animateur father
-        this.id++;
+        this.id = ++count;
         this.nom = nom;
         this.prenom = prenom;
     }
 
     public Person(int cin, String nom, String prenom, int numeroTelephone, Person pere){
         // this is a student father
+        this.id = ++count;
+        this.nom = nom;
         this.cin = cin;
         this.nom = nom;
         this.prenom = prenom;
@@ -33,6 +36,8 @@ public class Person {
 
     public Person(String nom, String prenom, Adresse adresse, Date dateNaissance, ImageProfil imageProfil, Person mere, Person pere){
         // this is a student
+        this.id = ++count;
+        this.nom = nom;
         this.nom = nom;
         this.prenom = prenom;
         this.imageProfil = imageProfil;
@@ -44,6 +49,8 @@ public class Person {
 
     public Person(int cin, String nom, String prenom, int numeroTelephone, Date dateNaissance, Adresse adresse, ImageProfil imageProfil, Person pere){
         // this is a student father
+        this.id = ++count;
+        this.nom = nom;
         this.cin = cin;
         this.nom = nom;
         this.dateNaissance = dateNaissance;

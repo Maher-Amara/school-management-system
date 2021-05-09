@@ -1,13 +1,15 @@
 package com.maherdev;
 
 public class Classe {
-    // protected int idClasse;
+    protected static int count = 0; // conteur
+    protected int id;
     protected float fraisInscription;
     protected String nom;
     protected Animateur[] animateurs;
 
 
     public Classe(String nom,float fraisInscription){
+        this.id = ++count; // auto increment ??
         this.nom = nom;
         this.fraisInscription = fraisInscription;
     }
@@ -24,7 +26,5 @@ public class Classe {
     public void ajouterAnimateur(Animateur animateur){
         /* ajouter animateur un animateur au tableau des animateurs */
     }
-
-
 
 }
