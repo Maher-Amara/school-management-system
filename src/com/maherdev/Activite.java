@@ -9,7 +9,7 @@ public class Activite {
     protected float fraisInscription;
 
     public Activite(int code, Animateur animateur, String designation, float fraisInscription){
-        this.id = ++count; // auto increment
+        this.id = count++; // auto increment
         this.code = code;
         this.animateur = animateur;
         this.designation = designation;

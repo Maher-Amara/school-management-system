@@ -9,7 +9,7 @@ public class Classe {
 
 
     public Classe(String nom,float fraisInscription){
-        this.id = ++count; // auto increment ??
+        this.id = count++; // auto increment
         this.nom = nom;
         this.fraisInscription = fraisInscription;
     }

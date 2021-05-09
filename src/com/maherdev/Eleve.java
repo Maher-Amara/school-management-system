@@ -3,11 +3,21 @@ package com.maherdev;
 import java.util.Date;
 
 public class Eleve extends Person{
+    protected static int count = 0; // conteur
+    protected int id;
+
     protected Classe classe;
     protected Activite[] listeActivites;
 
+    public Eleve(){
+        super("test","test");
+        this.id = count++;
+
+    }
+
     public Eleve(String nom, String prenom, Adresse adresse, Date dateNaissance, ImageProfil imageProfil,Person pere, Person mere){
         super(nom, prenom, adresse, dateNaissance, imageProfil, mere, pere);
+        this.id = count++;
     }
 
     public void update(String nom, String prenom, Adresse adresse, Date dateNaissance, ImageProfil imageProfil, Person mere, Person pere){

@@ -54,16 +54,16 @@ public class Menu {
                 this.menuPrincipal();
                 break;
             case 1:
-                this.showMenuAnimateur();
+                school.addAnimateur();
                 break;
             case 2:
-                this.showMenuEleves();
+                school.updateAnimateur();
                 break;
             case 3:
-                this.showMenuClasses();
+                school.deleteAnimateur();
                 break;
             case 4:
-                this.showMenuCours();
+                school.showAnimateurlist();
                 break;
             default:
                 System.out.println("veiller entrer un numero entre 0 et 4");
