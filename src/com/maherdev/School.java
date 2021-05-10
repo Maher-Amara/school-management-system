@@ -1,5 +1,8 @@
 package com.maherdev;
 
+import java.util.Date;
+import java.util.Scanner;
+
 public class School {
     int nombreClasseMax = 50;
     int nombreElevesMax = 1000;
@@ -8,7 +11,7 @@ public class School {
     Classe[] listeClasses = new Classe[nombreClasseMax];
     Eleve[] listeEleves = new Eleve[nombreElevesMax];
     Activite[] listeActivites = new Activite[nombreActiviteMax];
-    Animateur[] listeAnimateur = new Animateur[nombreAnimateurMax];
+    Animateur[] listeAnimateurs = new Animateur[nombreAnimateurMax];
 
     public School(){
 
@@ -34,18 +37,171 @@ public class School {
     }
 
     public void addAnimateur() {
-        /* creation d'un objet animateur
-        * ajouter animateur a la liste des animateurs
+        /*
+        * 1) recuperer les donnes de l'animateur
+        * 2) creation d'un objet animateur
+        * 3) ajout de l'animateur a la liste des animateurs
+        *
+        * NOTE : id animateur correspond a sa position dans la liste
+        * pour eviter la recherche et par quansequance economiser les ressources
         *
         */
+        int cin;
+        String nom;
+        String prenom;
+        int numeroTelephone;
+        Date dateNaissance;
+        Adresse adresse;
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.println("donner nom animaterur :");
+        nom = scanner.nextLine();
+
+        System.out.println("donner prenom animaterur :");
+        prenom = scanner.nextLine();
+
+        while (true){
+            try {
+                System.out.println("donner numero cin animaterur :");
+                cin = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (Exception e){
+                System.out.println("Error: le numero cin doit etre entier");
+            }
+        }
+
+        while (true){
+            try {
+                System.out.println("donner numero telephone animaterur :");
+                numeroTelephone = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (Exception e){
+                System.out.println("Error: le numero de thelephone doit etre entier");
+            }
+        }
+
+        while (true){
+            try {
+                System.out.println("donner date naissance animaterur (JJ/MM/YYYY):");
+                String stringDate = scanner.nextLine();
+                dateNaissance = new Date(stringDate);
+                break;
+            } catch (Exception e){
+                System.out.println("Error: format non compatible");
+            }
+        }
+
+        System.out.println("donner prenom du pere:");
+        String prenomPere = scanner.nextLine();
+        Person pere = new Person(nom,prenomPere);
+
+        adresse = new Adresse(); // create Adresse from user input
+
+        ImageProfil imageProfil = new ImageProfil(); // create get image from user input
+
+
+        // creation de l'instance animateur
+        Animateur animateur = new Animateur(cin, nom, prenom, numeroTelephone, dateNaissance, adresse, imageProfil, pere);
+
+        // ajouter animateur a la liste des animateurs
+        if (animateur.id == this.nombreAnimateurMax){
+            System.out.println("nombre maximal des animateurs atteint");
+        }else{
+            this.listeAnimateurs[animateur.id] = animateur;
+            System.out.printf("Animateur %s %s ajouter avec success ID: %s \n",animateur.nom,animateur.prenom,animateur.id);
+        }
+
     }
 
-    public void updateAnimateur() {
+    public void updateAnimateur(int idAnimateur) {/*
+     * 1) recuperer les donnes de l'animateur
+     * 2) creation d'un objet animateur
+     * 3) ajout de l'animateur a la liste des animateurs
+     *
+     * NOTE : id animateur correspond a sa position dans la liste
+     * pour eviter la recherche et par quansequance economiser les ressources
+     *
+     */
+        int cin;
+        String nom;
+        String prenom;
+        int numeroTelephone;
+        Date dateNaissance;
+        Adresse adresse;
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.println("donner nom animaterur :");
+        nom = scanner.nextLine();
+
+        System.out.println("donner prenom animaterur :");
+        prenom = scanner.nextLine();
+
+        while (true){
+            try {
+                System.out.println("donner numero cin animaterur :");
+                cin = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (Exception e){
+                System.out.println("Error: le numero cin doit etre entier");
+            }
+        }
+
+        while (true){
+            try {
+                System.out.println("donner numero telephone animaterur :");
+                numeroTelephone = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (Exception e){
+                System.out.println("Error: le numero de thelephone doit etre entier");
+            }
+        }
+
+        while (true){
+            try {
+                System.out.println("donner date naissance animaterur (JJ/MM/YYYY):");
+                String stringDate = scanner.nextLine();
+                dateNaissance = new Date(stringDate);
+                break;
+            } catch (Exception e){
+                System.out.println("Error: format non compatible");
+            }
+        }
+
+        System.out.println("donner prenom du pere:");
+        String prenomPere = scanner.nextLine();
+        Person pere = new Person(nom,prenomPere);
+
+        adresse = new Adresse(); // create Adresse from user input
+
+        ImageProfil imageProfil = new ImageProfil(); // create get image from user input
+
+
+        // mise a jours animateur
+        Animateur animateur = listeAnimateurs[idAnimateur];
+
+        animateur.update(cin, nom, prenom, numeroTelephone, dateNaissance, adresse, imageProfil, pere);
+
     }
 
-    public void deleteAnimateur() {
+    public void deleteAnimateur(int idAnimateur) {
+        Animateur[] newListeAnimateurs = new Animateur[this.nombreAnimateurMax];
+
+        for (Animateur animateur:this.listeAnimateurs) {
+            if (!(animateur.id == idAnimateur)){
+                newListeAnimateurs[animateur.id] = animateur;
+            }
+        }
+
+        this.listeAnimateurs = newListeAnimateurs;
     }
 
     public void showAnimateurlist() {
+        for (Animateur animateur:this.listeAnimateurs) {
+            try{
+                System.out.printf("%s - %s %s",animateur.id,animateur.nom,animateur.prenom);
+            }catch (Exception ignored){}
+        }
     }
 }
