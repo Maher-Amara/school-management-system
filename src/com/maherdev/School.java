@@ -1,5 +1,7 @@
 package com.maherdev;
 
+import jdk.jshell.spi.ExecutionControlProvider;
+
 import java.util.Date;
 import java.util.Scanner;
 
@@ -114,15 +116,16 @@ public class School {
 
     }
 
-    public void updateAnimateur(int idAnimateur) {/*
-     * 1) recuperer les donnes de l'animateur
-     * 2) creation d'un objet animateur
-     * 3) ajout de l'animateur a la liste des animateurs
-     *
-     * NOTE : id animateur correspond a sa position dans la liste
-     * pour eviter la recherche et par quansequance economiser les ressources
-     *
-     */
+    public void updateAnimateur(int idAnimateur) {
+        /*
+        * 1) recuperer les donnes de l'animateur
+        * 2) creation d'un objet animateur
+        * 3) ajout de l'animateur a la liste des animateurs
+        *
+        * NOTE : id animateur correspond a sa position dans la liste
+        * pour eviter la recherche et par quansequance economiser les ressources
+        *
+        */
         int cin;
         String nom;
         String prenom;
@@ -185,23 +188,28 @@ public class School {
 
     }
 
-    public void deleteAnimateur(int idAnimateur) {
-        Animateur[] newListeAnimateurs = new Animateur[this.nombreAnimateurMax];
-
-        for (Animateur animateur:this.listeAnimateurs) {
-            if (!(animateur.id == idAnimateur)){
-                newListeAnimateurs[animateur.id] = animateur;
-            }
+    public boolean deleteAnimateur(int idAnimateur) {
+        // check if object exists
+        if (this.listeAnimateurs[idAnimateur] == null){
+            return false;
+        }else{
+            // replace the object with null
+            // Note: JVM garbage collector will delete it from ram automatically once we delete it's access point
+            // voir : https://www.jmdoudoux.fr/java/dej/chap-gestion_memoire.htm#gestion_memoire-1
+            this.listeAnimateurs[idAnimateur] = null;
+            return true;
         }
-
-        this.listeAnimateurs = newListeAnimateurs;
     }
 
     public void showAnimateurlist() {
+        System.out.println("Liste  Animateurs :\n");
+        System.out.println("ID - nom prenom");
         for (Animateur animateur:this.listeAnimateurs) {
             try{
-                System.out.printf("%s - %s %s",animateur.id,animateur.nom,animateur.prenom);
+                System.out.printf("%s - %s %s \n",animateur.id,animateur.nom,animateur.prenom);
             }catch (Exception ignored){}
         }
+        System.out.println("");
+
     }
 }
