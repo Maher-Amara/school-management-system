@@ -11,14 +11,7 @@ public class Main {
 
         School school = new School();
 
-        school.addAnimateur();
-//        school.addAnimateur();
-//
-        school.showAnimateurlist();
-//
-        school.deleteAnimateur(0);
 
-        school.showAnimateurlist();
     }
 
 }

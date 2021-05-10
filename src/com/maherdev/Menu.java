@@ -41,6 +41,7 @@ public class Menu {
     protected void animateur() {
         //variable declaration
         Scanner scanner = new Scanner(System.in);
+        int id;
         int Choice;
 
         // afficer menu animateur
@@ -58,12 +59,16 @@ public class Menu {
                 school.addAnimateur();
                 break;
             case 2:
-                school.updateAnimateur(Integer.parseInt(scanner.nextLine()));
+                id = Integer.parseInt(scanner.nextLine());
+                school.updateAnimateur(id);
                 break;
             case 3:
-//                System.out.printf("Animateur %s %s suprimé avec success\n",deletedAnimateur.nom,deletedAnimateur.prenom);
-//                System.out.printf("Error : Animateur id %s not found \n",idAnimateur);
-                school.deleteAnimateur(Integer.parseInt(scanner.nextLine()));
+                id = Integer.parseInt(scanner.nextLine());
+                if (school.deleteAnimateur(id)){
+                    System.out.printf("Animateur id %s suprimé avec success\n",id);
+                }else{
+                    System.out.printf("Error : Animateur id %s not found \n",id);
+                }
                 break;
             case 4:
                 school.showAnimateurlist();

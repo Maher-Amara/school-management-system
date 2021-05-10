@@ -19,25 +19,6 @@ public class School {
 
     }
 
-    public void ajouterEleve(){
-
-    }
-    public void ajouterEleveClasse(){
-
-    }
-    public void ajouterEleveActivite(){
-
-    }
-    public void updateEleve(){
-
-    }
-    public void updateEleveClasse(){
-
-    }
-    public void updateEleveActivite(){
-
-    }
-
     public void addAnimateur() {
         /*
         * 1) recuperer les donnes de l'animateur
