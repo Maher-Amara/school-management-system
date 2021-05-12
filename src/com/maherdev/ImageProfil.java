@@ -3,6 +3,11 @@ package com.maherdev;
 import java.util.Scanner;
 
 public class ImageProfil {
+    /*
+    * this is preaty usless at this point but
+    * if your want to do some file manipulation
+    * your profile pic mangment code goes here
+    */
     protected String filePath;
 
     public ImageProfil(String filePath){
@@ -14,14 +19,15 @@ public class ImageProfil {
         this.filePath = scanner.nextLine();
     }
 
-    private void update(String filePath){
-        this.filePath = filePath;
+    private void update(String newFilePath){
+        this.delete();
+        this.filePath = newFilePath;
     }
 
-    private void delete(String filePath){
+    private void delete(){
     }
 
     void show(){
-        System.out.println(this.filePath);
+        System.out.printf("Image profil: %s \n",this.filePath);
     }
 }

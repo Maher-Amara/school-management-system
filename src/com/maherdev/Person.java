@@ -92,4 +92,9 @@ public class Person {
         this.numeroTelephone = numeroTelephone;
         this.pere = pere;
     }
+
+    public void show(){
+        System.out.printf("Nom: %s\n",this.nom);
+        System.out.printf("Prenom: %s\n",this.prenom);
+    }
 }

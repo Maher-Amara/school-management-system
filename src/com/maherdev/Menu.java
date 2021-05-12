@@ -7,7 +7,7 @@ public class Menu {
 
     public Menu(){
         // initiation de l'ecole
-        this.school = new School();
+        this.school = new School(1);
     }
 
     protected int getUserChoice(){
@@ -32,9 +32,10 @@ public class Menu {
     protected void showMenuAnimateur(){
         System.out.println("************** Menu Gestion Animateur **************\n");
         System.out.println("1. Ajouter animateur");
-        System.out.println("2. Mettre a jours animateur");
-        System.out.println("3. Supprimer  animateur");
-        System.out.println("4. Lister animateurs");
+        System.out.println("2. Afficher animateur");
+        System.out.println("3. Mettre a jours animateur");
+        System.out.println("4. Supprimer  animateur");
+        System.out.println("5. Lister animateurs");
         System.out.println("0. Retour menu principal");
     }
 
@@ -59,10 +60,23 @@ public class Menu {
                 school.addAnimateur();
                 break;
             case 2:
+                System.out.print("donner ID animateur :");
                 id = Integer.parseInt(scanner.nextLine());
-                school.updateAnimateur(id);
+                if (!(school.showAnimateur(id))){
+                    System.out.printf("Error : Animateur id %s not found \n",id);
+                }
                 break;
             case 3:
+                System.out.print("donner ID animateur :");
+                id = Integer.parseInt(scanner.nextLine());
+                if (school.updateAnimateur(id)){
+                    System.out.printf("Animateur id %s mise a jours avec success\n",id);
+                }else{
+                    System.out.printf("Error : Animateur id %s not found \n",id);
+                }
+                break;
+            case 4:
+                System.out.print("donner ID animateur :");
                 id = Integer.parseInt(scanner.nextLine());
                 if (school.deleteAnimateur(id)){
                     System.out.printf("Animateur id %s suprimé avec success\n",id);
@@ -70,11 +84,11 @@ public class Menu {
                     System.out.printf("Error : Animateur id %s not found \n",id);
                 }
                 break;
-            case 4:
+            case 5:
                 school.showAnimateurlist();
                 break;
             default:
-                System.out.println("veiller entrer un numero entre 0 et 4");
+                System.out.println("veiller entrer un numero entre 0 et 5");
         }
     }
 
