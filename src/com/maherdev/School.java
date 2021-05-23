@@ -52,6 +52,7 @@ public class School {
                 );
     }
 
+    // Gestion animateur
     public void addAnimateur() {
         /*
         * 1) recuperer les donnes de l'animateur
@@ -110,12 +111,10 @@ public class School {
 
         System.out.println("donner prenom du pere:");
         String prenomPere = scanner.nextLine();
-        Person pere = new Person(nom,prenomPere);
+        Person pere = new Person(nom,prenomPere); // create Person
 
         adresse = new Adresse(); // create Adresse from user input
-
         ImageProfil imageProfil = new ImageProfil(); // create get image from user input
-
 
         // creation de l'instance animateur
         Animateur animateur = new Animateur(cin, nom, prenom, numeroTelephone, dateNaissance, adresse, imageProfil, pere);
@@ -127,7 +126,6 @@ public class School {
             this.listeAnimateurs[animateur.id] = animateur;
             System.out.printf("Animateur %s %s ajouter avec success ID: %s \n",animateur.nom,animateur.prenom,animateur.id);
         }
-
     }
     public boolean showAnimateur(int idAnimateur) {
         /*
@@ -249,5 +247,214 @@ public class School {
         System.out.println("");
 
     }
+
+    // Gestion eleves
+    public void addEleve() {
+        /*
+         * 1) recuperer les donnes de l'Eleve
+         * 2) creation d'un objet Eleve
+         * 3) ajout de l'Eleve a la liste des Eleves
+         *
+         * NOTE : id Eleve correspond a sa position dans la liste
+         * pour eviter la recherche et par quansequance economiser les ressources
+         */
+        int cin;
+        String nom;
+        String prenom;
+        int numeroTelephone;
+        Date dateNaissance;
+        Adresse adresse;
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.println("donner nom eleve :");
+        nom = scanner.nextLine();
+
+        System.out.println("donner prenom eleve :");
+        prenom = scanner.nextLine();
+
+        System.out.println("donner prenom du pere :");
+        String prenomPere = scanner.nextLine();
+
+        System.out.println("donner prenom du grand-pere :");
+        String prenomGrandPere = scanner.nextLine();
+
+        System.out.println("donner nom du mere :");
+        String nomMere = scanner.nextLine();
+
+        System.out.println("donner prenom du mere :");
+        String prenomMere = scanner.nextLine();
+
+        while (true){
+            try {
+                System.out.println("donner numero cin du pere :");
+                cin = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (Exception e){
+                System.out.println("Error: le numero cin doit etre entier");
+            }
+        }
+
+        while (true){
+            try {
+                System.out.println("donner numero telephone du pere :");
+                numeroTelephone = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (Exception e){
+                System.out.println("Error: le numero de thelephone doit etre entier");
+            }
+        }
+
+        while (true){
+            try {
+                System.out.println("donner date naissance eleve (JJ/MM/YYYY):");
+                String stringDate = scanner.nextLine();
+                dateNaissance = new Date(stringDate);
+                break;
+            } catch (Exception e){
+                System.out.println("Error: format non compatible");
+            }
+        }
+
+        Person mere = new Person(nomMere,prenomMere);
+        Person gradPere = new Person(nom,prenomGrandPere);
+        Person pere = new Person(cin,nom, prenomPere, numeroTelephone, gradPere);
+        adresse = new Adresse(); // create Adresse from user input
+        ImageProfil imageProfil = new ImageProfil(); // create get image from user input
+
+
+        // creation de l'instance animateur
+        Eleve eleve = new Eleve(nom, prenom,adresse, dateNaissance, imageProfil,pere, mere);
+
+        // ajouter animateur a la liste des animateurs
+        if (eleve.id == this.nombreElevesMax){
+            System.out.println("nombre maximal des Eleves atteint");
+        }else{
+            this.listeEleves[eleve.id] = eleve;
+            System.out.printf("Eleve %s %s ajouter avec success ID: %s \n",eleve.nom,eleve.prenom,eleve.id);
+        }
+    }
+    public boolean showEleve(int idEleve) {
+        /*
+         * 1) recuperer l'animateur de la liste des animateurs
+         * 2) afficher animateur
+         *
+         * NOTE : id animateur correspond a sa position dans la liste
+         * pour eviter la recherche et par conséquence economiser les ressources
+         */
+        Eleve eleve = this.listeEleves[idEleve];
+        if (eleve == null) {
+            return false;
+        }else{
+            eleve.show();
+            return true;
+        }
+    }
+    public boolean updateEleve(int idEleve) {
+        /*
+         * 1) recuperer l'animateur de la liste des animateurs
+         * 2) recuperer les donnes de l'animateur
+         * 3) mise a jours de l'animateur
+         *
+         * NOTE : id animateur correspond a sa position dans la liste
+         * pour eviter la recherche et par conséquence economiser les ressources
+         */
+
+        int cin;
+        String nom;
+        String prenom;
+        int numeroTelephone;
+        Date dateNaissance;
+        Adresse adresse;
+        Scanner scanner = new Scanner(System.in);
+
+        Animateur animateur = listeAnimateurs[idEleve];
+
+        // check if object exists
+        if (animateur == null){
+            return false;
+        }else {
+            System.out.println("donner nom animaterur :");
+            nom = scanner.nextLine();
+
+            System.out.println("donner prenom animaterur :");
+            prenom = scanner.nextLine();
+
+            while (true) {
+                try {
+                    System.out.println("donner numero cin animaterur :");
+                    cin = Integer.parseInt(scanner.nextLine());
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Error: le numero cin doit etre entier");
+                }
+            }
+
+            while (true) {
+                try {
+                    System.out.println("donner numero telephone animaterur :");
+                    numeroTelephone = Integer.parseInt(scanner.nextLine());
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Error: le numero de thelephone doit etre entier");
+                }
+            }
+
+            while (true) {
+                try {
+                    System.out.println("donner date naissance animaterur (JJ/MM/YYYY):");
+                    String stringDate = scanner.nextLine();
+                    dateNaissance = new Date(stringDate);
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Error: format non compatible");
+                }
+            }
+
+            System.out.println("donner prenom du pere:");
+            String prenomPere = scanner.nextLine();
+            Person pere = new Person(nom, prenomPere);
+
+            adresse = new Adresse(); // create Adresse from user input
+
+            ImageProfil imageProfil = new ImageProfil(); // create get image from user input
+
+            // mise a jours animateur
+            animateur.update(cin, nom, prenom, numeroTelephone, dateNaissance, adresse, imageProfil, pere);
+            return true;
+        }
+    }
+    public boolean deleteEleve(int idEleve) {
+        /*
+         * 1) recuperer l'animateur de la liste des animateurs
+         * 2) suprimer animateur
+         *
+         * NOTE : id animateur correspond a sa position dans la liste
+         * pour eviter la recherche et par conséquence economiser les ressources
+         */
+
+        // check if object exists
+        if (this.listeAnimateurs[idEleve] == null){
+            return false;
+        }else{
+            // replace the object with null
+            // Note: JVM garbage collector will delete it from ram automatically once we delete it's access point
+            // voir : https://www.jmdoudoux.fr/java/dej/chap-gestion_memoire.htm#gestion_memoire-1
+            this.listeAnimateurs[idEleve] = null;
+            return true;
+        }
+    }
+    public void showElevelist() {
+        System.out.println("Liste  Animateurs :\n");
+        for (Animateur animateur:this.listeAnimateurs) {
+            try{
+                System.out.printf("%s - %s %s \n",animateur.id,animateur.nom,animateur.prenom);
+            }catch (Exception ignored){}
+        }
+        System.out.println("");
+
+    }
+
+
 
 }

@@ -9,13 +9,13 @@ public class Eleve extends Person{
     protected Classe classe;
     protected Activite[] listeActivites;
 
-    public Eleve(){
-        super("test","test");
-        this.id = count++;
-
-    }
-
-    public Eleve(String nom, String prenom, Adresse adresse, Date dateNaissance, ImageProfil imageProfil,Person pere, Person mere){
+    public Eleve(String nom,
+                 String prenom,
+                 Adresse adresse,
+                 Date dateNaissance,
+                 ImageProfil imageProfil,
+                 Person pere,
+                 Person mere){
         super(nom, prenom, adresse, dateNaissance, imageProfil, mere, pere);
         this.id = count++;
     }
@@ -39,7 +39,6 @@ public class Eleve extends Person{
     }
 
     public void ajouterActivite(Activite activite){
-
     }
 
     public void setClasse(Classe classe){
@@ -69,5 +68,4 @@ public class Eleve extends Person{
         System.out.printf("Total : %s",total);
 
     }
-
 }

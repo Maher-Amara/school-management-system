@@ -1,5 +1,6 @@
 package com.maherdev;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
@@ -10,7 +11,8 @@ public class Menu {
         this.school = new School(1);
     }
 
-    protected int getUserChoice(){
+    // util functions
+    private int getUserChoice(){
         int Choice;
 
         System.out.println("Entrer votre choix :");
@@ -28,8 +30,36 @@ public class Menu {
         }
         return Choice;
     }
+    protected static void clear(){
+//        try{
+//            Runtime.getRuntime().exec("cls");
+//        }
+//        catch (IOException e){
+//            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+//        }
+    }
+    private void exit(){
+        //fermer le programme
+        System.out.println("Good Bye");
+        System.exit(0);
+    }
+    private void block(){
+        System.out.println("tape a key to exit ...");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+    }
+    public void mainLoop(){
+        // boucler a l'infini
+        while (true) {
+            this.menuPrincipal();
+        }
+    }
 
-    protected void showMenuAnimateur(){
+    // Gestion menu animateur
+    private void showMenuAnimateur(){
+        // clear board
+        this.clear();
+
         System.out.println("************** Menu Gestion Animateur **************\n");
         System.out.println("1. Ajouter animateur");
         System.out.println("2. Afficher animateur");
@@ -38,8 +68,7 @@ public class Menu {
         System.out.println("5. Lister animateurs");
         System.out.println("0. Retour menu principal");
     }
-
-    protected void animateur() {
+    private void animateur() {
         //variable declaration
         Scanner scanner = new Scanner(System.in);
         int id;
@@ -54,7 +83,6 @@ public class Menu {
         // arbre de choix
         switch(Choice) {
             case 0:
-                this.menuPrincipal();
                 break;
             case 1:
                 school.addAnimateur();
@@ -92,7 +120,12 @@ public class Menu {
         }
     }
 
-    protected void showMenuEleves(){
+
+    // Gestion menu eleves
+    private void showMenuEleves(){
+        // clear board
+        clear();
+
         System.out.println("************** Menu Gestion Elèves **************\n");
         System.out.println("1. Ajouter eleve");
         System.out.println("2. Mettre a jours eleve");
@@ -100,9 +133,10 @@ public class Menu {
         System.out.println("4. Lister eleves");
         System.out.println("0. Retour menu principal");
     }
-
-    protected void eleves() {
+    private void eleves() {
         //variable declaration
+        Scanner scanner = new Scanner(System.in);
+        int id;
         int Choice;
 
         // afficer menu eleves
@@ -114,26 +148,49 @@ public class Menu {
         // arbre de choix
         switch(Choice) {
             case 0:
-                this.menuPrincipal();
                 break;
             case 1:
-                this.showMenuAnimateur();
+                school.addEleve();
                 break;
             case 2:
-                this.showMenuEleves();
+                System.out.print("donner ID Eleve :");
+                id = Integer.parseInt(scanner.nextLine());
+                if (!(school.showEleve(id))){
+                    System.out.printf("Error : Eleve id %s not found \n",id);
+                }
                 break;
             case 3:
-                this.showMenuClasses();
+                System.out.print("donner ID Eleve :");
+                id = Integer.parseInt(scanner.nextLine());
+                if (school.updateEleve(id)){
+                    System.out.printf("Eleve id %s mise a jours avec success\n",id);
+                }else{
+                    System.out.printf("Error : Eleve id %s not found \n",id);
+                }
                 break;
             case 4:
-                this.showMenuCours();
+                System.out.print("donner ID Eleve :");
+                id = Integer.parseInt(scanner.nextLine());
+                if (school.deleteEleve(id)){
+                    System.out.printf("Eleve id %s suprimé avec success\n",id);
+                }else{
+                    System.out.printf("Error : Eleve id %s not found \n",id);
+                }
+                break;
+            case 5:
+                school.showElevelist();
                 break;
             default:
-                System.out.println("veiller entrer un numero entre 0 et 4");
+                System.out.println("veiller entrer un numero entre 0 et 5");
         }
     }
 
-    protected void showMenuClasses(){
+
+    // Gestion menu classes
+    private void showMenuClasses(){
+        // clear board
+        this.clear();
+
         System.out.println("************** Menu Gestion Classes **************\n");
         System.out.println("1. Ajouter classe");
         System.out.println("2. Mettre a jours classe");
@@ -141,8 +198,7 @@ public class Menu {
         System.out.println("4. Lister classes");
         System.out.println("0. Retour menu principal");
     }
-
-    protected void classes() {
+    private void classes() {
         //variable declaration
         int Choice;
 
@@ -174,7 +230,12 @@ public class Menu {
         }
     }
 
-    protected void showMenuCours(){
+
+    // Gestion menu cours
+    private void showMenuCours(){
+        // clear board
+        this.clear();
+
         System.out.println("************** Menu Gestion Cours **************\n");
         System.out.println("1. Ajouter cour");
         System.out.println("2. Mettre a jours cour");
@@ -182,8 +243,7 @@ public class Menu {
         System.out.println("4. Lister cours");
         System.out.println("0. Retour menu principal");
     }
-
-    protected void cours() {
+    private void cours() {
         //variable declaration
         int Choice;
 
@@ -215,14 +275,12 @@ public class Menu {
         }
     }
 
-    protected void exit(){
-        //fermer le programme
 
-        System.out.println("Good Bye");
-        System.exit(0);
-    }
+    // Gestion menu principal
+    private void showMenuPrincipal(){
+        // clear board
+        this.clear();
 
-    protected void showMenuPrincipal(){
         // afficher Menu Principal
         System.out.println("\n************** Menu Principal **************\n");
         System.out.println("1. Gestion Animateur ");
@@ -231,8 +289,7 @@ public class Menu {
         System.out.println("4. Gestion Cours");
         System.out.println("0. Exit");
     }
-
-    protected void menuPrincipal(){
+    private void menuPrincipal(){
         //variable declaration
         int Choice;
 
@@ -261,13 +318,6 @@ public class Menu {
                 break;
             default:
                 System.out.println("veiller entrer un numero entre 0 et 4");
-        }
-    }
-
-    public void mainLoop(){
-        // boucler a l'infini
-        while (true) {
-            this.menuPrincipal();
         }
     }
 }
