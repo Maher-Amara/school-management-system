@@ -24,6 +24,7 @@ public class Eleve extends Person{
         super.update(nom, prenom, adresse, dateNaissance, imageProfil, mere, pere);
     }
 
+    @Override
     public void show(){
         System.out.printf("Nom :\t%s \n", this.nom);
         System.out.printf("Prénom :\t%s\n", this.prenom);

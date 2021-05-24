@@ -1,33 +1,33 @@
 package com.maherdev;
 
-import java.util.Scanner;
-
-public class ImageProfil {
+public class ImageProfil extends fileHandler {
     /*
     * this is preaty usless at this point but
     * if your want to do some file manipulation
     * your profile pic mangment code goes here
     */
-    protected String filePath;
 
     public ImageProfil(String filePath){
-        this.filePath = filePath;
-    }
-    public ImageProfil(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("donner le lien vers l'image profil :");
-        this.filePath = scanner.nextLine();
+        super(filePath);
     }
 
-    private void update(String newFilePath){
+    public ImageProfil(){
+        super();
+    }
+
+    @Override
+    public void update(String newFilePath){
         this.delete();
         this.filePath = newFilePath;
     }
 
-    private void delete(){
+    @Override
+    public void delete(){
     }
 
-    void show(){
+    @Override
+    public void show(){
+        // afficher lien image
         System.out.printf("Image profil: %s \n",this.filePath);
     }
 }

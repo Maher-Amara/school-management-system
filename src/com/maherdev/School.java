@@ -454,7 +454,137 @@ public class School {
         System.out.println("");
 
     }
+    public void addEleveClasse() {
+    }
+    public void addEleveActivite() {
+    }
+    public void factureEleve() {
+    }
+
+    // Gestion classes
+    public void addClass() {
+        /*
+         * 1) recuperer les donnes de l'Eleve
+         * 2) creation d'un objet Eleve
+         * 3) ajout de l'Eleve a la liste des Eleves
+         *
+         * NOTE : id Eleve correspond a sa position dans la liste
+         * pour eviter la recherche et par quansequance economiser les ressources
+         */
+        int cin;
+        String nom;
+        String prenom;
+        int numeroTelephone;
+        Date dateNaissance;
+        Adresse adresse;
+        Scanner scanner = new Scanner(System.in);
 
 
+        System.out.println("donner nom eleve :");
+        nom = scanner.nextLine();
 
+        System.out.println("donner prenom eleve :");
+        prenom = scanner.nextLine();
+
+        System.out.println("donner prenom du pere :");
+        String prenomPere = scanner.nextLine();
+
+        System.out.println("donner prenom du grand-pere :");
+        String prenomGrandPere = scanner.nextLine();
+
+        System.out.println("donner nom du mere :");
+        String nomMere = scanner.nextLine();
+
+        System.out.println("donner prenom du mere :");
+        String prenomMere = scanner.nextLine();
+
+        while (true){
+            try {
+                System.out.println("donner numero cin du pere :");
+                cin = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (Exception e){
+                System.out.println("Error: le numero cin doit etre entier");
+            }
+        }
+
+        while (true){
+            try {
+                System.out.println("donner numero telephone du pere :");
+                numeroTelephone = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (Exception e){
+                System.out.println("Error: le numero de thelephone doit etre entier");
+            }
+        }
+
+        while (true){
+            try {
+                System.out.println("donner date naissance eleve (JJ/MM/YYYY):");
+                String stringDate = scanner.nextLine();
+                dateNaissance = new Date(stringDate);
+                break;
+            } catch (Exception e){
+                System.out.println("Error: format non compatible");
+            }
+        }
+
+        Person mere = new Person(nomMere,prenomMere);
+        Person gradPere = new Person(nom,prenomGrandPere);
+        Person pere = new Person(cin,nom, prenomPere, numeroTelephone, gradPere);
+        adresse = new Adresse(); // create Adresse from user input
+        ImageProfil imageProfil = new ImageProfil(); // create get image from user input
+
+
+        // creation de l'instance animateur
+        Eleve eleve = new Eleve(nom, prenom,adresse, dateNaissance, imageProfil,pere, mere);
+
+        // ajouter animateur a la liste des animateurs
+        if (eleve.id == this.nombreElevesMax){
+            System.out.println("nombre maximal des Eleves atteint");
+        }else{
+            this.listeEleves[eleve.id] = eleve;
+            System.out.printf("Eleve %s %s ajouter avec success ID: %s \n",eleve.nom,eleve.prenom,eleve.id);
+        }
+    }
+    public boolean showClass(int idClass) {
+        return false;
+    }
+    public boolean updateClass(int idClass) {
+        return false;
+    }
+    public boolean deleteClass(int idClass) {
+        return false;
+    }
+    public void showClasslist() {
+        System.out.println("Liste Class :\n");
+        for (Classe classe:this.listeClasses) {
+            try{
+                System.out.printf("%s - %s %s \n",classe.id,classe.nom);
+            }catch (Exception ignored){}
+        }
+        System.out.println("");
+
+    }
+
+    // Gestion activite
+    public void addActivite() {}
+    public boolean showActivite(int idActivite) {
+        return false;
+    }
+    public boolean updateActivite(int idActivite) {
+        return false;
+    }
+    public boolean deleteActivite(int idActivite) {
+        return false;
+    }
+    public void showActivitelist() {
+        System.out.println("Liste Class :\n");
+        for (Activite activite:this.listeActivites) {
+            try{
+                System.out.printf("%s - %s %s \n",activite.id,activite.designation);
+            }catch (Exception ignored){}
+        }
+        System.out.println("");
+    }
 }

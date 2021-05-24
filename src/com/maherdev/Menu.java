@@ -31,6 +31,7 @@ public class Menu {
         return Choice;
     }
     protected static void clear(){
+//        block();
 //        try{
 //            Runtime.getRuntime().exec("cls");
 //        }
@@ -43,7 +44,7 @@ public class Menu {
         System.out.println("Good Bye");
         System.exit(0);
     }
-    private void block(){
+    private static void block(){
         System.out.println("tape a key to exit ...");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
@@ -128,9 +129,13 @@ public class Menu {
 
         System.out.println("************** Menu Gestion Elèves **************\n");
         System.out.println("1. Ajouter eleve");
-        System.out.println("2. Mettre a jours eleve");
-        System.out.println("3. Supprimer eleve");
-        System.out.println("4. Lister eleves");
+        System.out.println("2. Afficher eleve");
+        System.out.println("3. Mettre a jours eleve");
+        System.out.println("4. Supprimer eleve");
+        System.out.println("5. Lister eleves");
+        System.out.println("6. Ajouter eleve a une classe");
+        System.out.println("7. Ajouter eleve a une activité");
+        System.out.println("8. Facture eleve");
         System.out.println("0. Retour menu principal");
     }
     private void eleves() {
@@ -180,6 +185,25 @@ public class Menu {
             case 5:
                 school.showElevelist();
                 break;
+            case 6:
+                System.out.print("donner ID Eleve :");
+                id = Integer.parseInt(scanner.nextLine());
+
+                school.addEleveClasse();
+                break;
+            case 7:
+                System.out.print("donner ID Eleve :");
+                id = Integer.parseInt(scanner.nextLine());
+
+                school.addEleveActivite();
+                break;
+            case 8:
+                System.out.print("donner ID Eleve :");
+                id = Integer.parseInt(scanner.nextLine());
+
+                school.factureEleve();
+                break;
+
             default:
                 System.out.println("veiller entrer un numero entre 0 et 5");
         }
