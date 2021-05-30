@@ -60,38 +60,29 @@ public class School {
         * 3) ajout de l'animateur a la liste des animateurs
         *
         * NOTE : id animateur correspond a sa position dans la liste
-        * pour eviter la recherche et par quansequance economiser les ressources
+        * pour eviter la recherche et par conséquence economiser les ressources
         *
         */
-        int cin;
-        String nom;
-        String prenom;
-        int numeroTelephone;
-        Date dateNaissance;
-        Adresse adresse;
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println("donner nom animaterur :");
-        nom = Person.nom();
+        String nom = Person.nom();
 
         System.out.println("donner prenom animaterur :");
-        prenom = Person.nom();
-
+        String prenom = Person.nom();
 
         System.out.println("donner numero cin animaterur :");
-        cin = Person.cin();
+        int cin = Person.cin();
 
         System.out.println("donner numero telephone animaterur :");
-        numeroTelephone = Person.tel();
+        int numeroTelephone = Person.tel();
 
         System.out.println("donner date naissance animaterur (JJ/MM/YYYY):");
-        dateNaissance = Person.date();
+        Date dateNaissance = Person.date();
 
         System.out.println("donner prenom du pere:");
         String prenomPere = Person.nom();
         Person pere = new Person(nom,prenomPere); // create Person
 
-        adresse = new Adresse(); // create Adresse from user input
+        Adresse adresse = new Adresse(); // create Adresse from user input
         ImageProfil imageProfil = new ImageProfil(); // create get image from user input
 
         // creation de l'instance animateur
@@ -99,7 +90,7 @@ public class School {
 
         // ajouter animateur a la liste des animateurs
         if (animateur.id == this.nombreAnimateurMax){
-            System.out.println("nombre maximal des animateurs atteint");
+            System.out.println("Nombre maximal des animateurs atteint");
         }else{
             this.listeAnimateurs[animateur.id] = animateur;
             System.out.printf("Animateur %s %s ajouter avec success ID: %s \n",animateur.nom,animateur.prenom,animateur.id);
@@ -109,14 +100,21 @@ public class School {
         /*
          * 1) recuperer l'animateur de la liste des animateurs
          * 2) afficher animateur
-         *
+         * 3) retourne si l'istance cherchée est trouvée ou non
          * NOTE : id animateur correspond a sa position dans la liste
          * pour eviter la recherche et par conséquence economiser les ressources
          */
+
+        // check if object exists
+        if (idAnimateur >= nombreAnimateurMax){
+            return false;
+        }
         Animateur animateur = this.listeAnimateurs[idAnimateur];
         if (animateur == null) {
+            // Istance pas existante
             return false;
         }else{
+            // Istanse trouvée -> afficher animateur
             animateur.show();
             return true;
         }
@@ -131,41 +129,35 @@ public class School {
         * pour eviter la recherche et par conséquence economiser les ressources
         */
 
-        int cin;
-        String nom;
-        String prenom;
-        int numeroTelephone;
-        Date dateNaissance;
-        Adresse adresse;
-        Scanner scanner = new Scanner(System.in);
-
-        Animateur animateur = listeAnimateurs[idAnimateur];
-
         // check if object exists
+        if (idAnimateur >= nombreAnimateurMax){
+            return false;
+        }
+        Animateur animateur = listeAnimateurs[idAnimateur];
         if (animateur == null){
             return false;
-        }else {
+        }
+        else {
             System.out.println("donner nom animaterur :");
-            nom = Person.nom();
+            String nom = Person.nom();
 
             System.out.println("donner prenom animaterur :");
-            prenom = Person.nom();
+            String prenom = Person.nom();
 
             System.out.println("donner numero cin animaterur :");
-            cin = Person.cin();
+            int cin = Person.cin();
 
             System.out.println("donner numero telephone animaterur :");
-            numeroTelephone = Person.tel();
+            int numeroTelephone = Person.tel();
 
             System.out.println("donner date naissance animaterur (JJ/MM/YYYY):");
-            dateNaissance = Person.date();
-
+            Date dateNaissance = Person.date();
 
             System.out.println("donner prenom du pere:");
             String prenomPere = Person.nom();
             Person pere = new Person(nom, prenomPere);
 
-            adresse = new Adresse(); // create Adresse from user input
+            Adresse adresse = new Adresse(); // create Adresse from user input
 
             ImageProfil imageProfil = new ImageProfil(); // create get image from user input
 
@@ -184,6 +176,9 @@ public class School {
          */
 
         // check if object exists
+        if (idAnimateur >= nombreAnimateurMax){
+            return false;
+        }
         if (this.listeAnimateurs[idAnimateur] == null){
             return false;
         }else{
@@ -197,12 +192,11 @@ public class School {
     public void showAnimateurlist() {
         System.out.println("Liste  Animateurs :\n");
         for (Animateur animateur:this.listeAnimateurs) {
-            try{
+            if(animateur != null){
                 System.out.printf("%s - %s %s \n",animateur.id,animateur.nom,animateur.prenom);
-            }catch (Exception ignored){}
+            }
         }
         System.out.println("");
-
     }
 
     // Gestion eleves
@@ -213,22 +207,14 @@ public class School {
          * 3) ajout de l'Eleve a la liste des Eleves
          *
          * NOTE : id Eleve correspond a sa position dans la liste
-         * pour eviter la recherche et par quansequance economiser les ressources
+         * pour eviter la recherche et par conséquence economiser les ressources
          */
-        int cin;
-        String nom;
-        String prenom;
-        int numeroTelephone;
-        Date dateNaissance;
-        Adresse adresse;
-        Scanner scanner = new Scanner(System.in);
-
 
         System.out.println("donner nom eleve :");
-        nom = Person.nom();
+        String nom = Person.nom();
 
         System.out.println("donner prenom eleve :");
-        prenom = Person.nom();
+        String prenom = Person.nom();
 
         System.out.println("donner prenom du pere :");
         String prenomPere = Person.nom();
@@ -243,20 +229,20 @@ public class School {
         String prenomMere = Person.nom();
 
         System.out.println("donner numero cin du pere :");
-        cin = Person.cin();
+        int cin = Person.cin();
 
         System.out.println("donner numero telephone du pere :");
-        numeroTelephone = Person.tel();
+        int numeroTelephone = Person.tel();
 
         System.out.println("donner date naissance eleve (JJ/MM/YYYY):");
-        dateNaissance = Person.date();
+        Date dateNaissance = Person.date();
 
         Person mere = new Person(nomMere,prenomMere);
         Person gradPere = new Person(nom,prenomGrandPere);
 
         Person pere = new Person(cin,nom, prenomPere, numeroTelephone, gradPere);
 
-        adresse = new Adresse(); // create Adresse from user input
+        Adresse adresse = new Adresse(); // create Adresse from user input
 
         ImageProfil imageProfil = new ImageProfil(); // create get image from user input
 
@@ -264,7 +250,7 @@ public class School {
         Eleve eleve = new Eleve(nom, prenom,adresse, dateNaissance, imageProfil,pere, mere);
 
         // ajouter eleve a la liste des eleves
-        if (eleve.id == this.nombreElevesMax){
+        if (eleve.id >= this.nombreElevesMax){
             System.out.println("nombre maximal des Eleves atteint");
         }else{
             this.listeEleves[eleve.id] = eleve;
@@ -279,6 +265,11 @@ public class School {
          * NOTE : id animateur correspond a sa position dans la liste
          * pour eviter la recherche et par conséquence economiser les ressources
          */
+
+        // check if object exists
+        if (idEleve >= this.nombreElevesMax){
+            return false;
+        }
         Eleve eleve = this.listeEleves[idEleve];
         if (eleve == null) {
             return false;
@@ -297,47 +288,54 @@ public class School {
          * pour eviter la recherche et par conséquence economiser les ressources
          */
 
-        int cin;
-        String nom;
-        String prenom;
-        int numeroTelephone;
-        Date dateNaissance;
-        Adresse adresse;
-        Scanner scanner = new Scanner(System.in);
 
-        Animateur animateur = listeAnimateurs[idEleve];
+        Eleve eleve = listeEleves[idEleve];
 
         // check if object exists
-        if (animateur == null){
+        if (idEleve >= this.nombreElevesMax){
+            return false;
+        }
+        if (eleve == null){
             return false;
         }else {
-            System.out.println("donner nom animaterur :");
-            nom = Person.nom();
+            System.out.println("donner nom eleve :");
+            String nom = Person.nom();
 
-            System.out.println("donner prenom animaterur :");
-            prenom = Person.nom();
+            System.out.println("donner prenom eleve :");
+            String prenom = Person.nom();
 
-            System.out.println("donner numero cin animaterur :");
-            cin = Person.cin();
-
-            System.out.println("donner numero telephone animaterur :");
-            numeroTelephone = Person.tel();
-
-            System.out.println("donner date naissance animaterur (JJ/MM/YYYY):");
-            dateNaissance = Person.date();
-
-            System.out.println("donner prenom du pere:");
+            System.out.println("donner prenom du pere :");
             String prenomPere = Person.nom();
-            Person pere = new Person(nom, prenomPere);
 
-            // create Adresse from user input
-            adresse = new Adresse();
+            System.out.println("donner prenom du grand-pere :");
+            String prenomGrandPere = Person.nom();
 
-            // create get image from user input
-            ImageProfil imageProfil = new ImageProfil();
+            System.out.println("donner nom du mere :");
+            String nomMere = Person.nom();
 
-            // mise a jours animateur
-            animateur.update(cin, nom, prenom, numeroTelephone, dateNaissance, adresse, imageProfil, pere);
+            System.out.println("donner prenom du mere :");
+            String prenomMere = Person.nom();
+
+            System.out.println("donner numero cin du pere :");
+            int cin = Person.cin();
+
+            System.out.println("donner numero telephone du pere :");
+            int numeroTelephone = Person.tel();
+
+            System.out.println("donner date naissance eleve (JJ/MM/YYYY):");
+            Date dateNaissance = Person.date();
+
+            Person mere = new Person(nomMere,prenomMere);
+            Person gradPere = new Person(nom,prenomGrandPere);
+
+            Person pere = new Person(cin,nom, prenomPere, numeroTelephone, gradPere);
+
+            Adresse adresse = new Adresse(); // create Adresse from user input
+
+            ImageProfil imageProfil = new ImageProfil(); // create get image from user input
+
+            // creation de l'instance eleve
+            eleve.update(nom, prenom,adresse, dateNaissance, imageProfil,pere, mere);
 
             return true;
         }
@@ -387,7 +385,7 @@ public class School {
          * 3) ajout de l'Eleve a la liste des Eleves
          *
          * NOTE : id Eleve correspond a sa position dans la liste
-         * pour eviter la recherche et par quansequance economiser les ressources
+         * pour eviter la recherche et par conséquence economiser les ressources
          */
         int cin;
         String nom;

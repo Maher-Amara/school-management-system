@@ -31,7 +31,7 @@ public class Person {
         this.pere = pere;
     }
 
-    public Person(String nom, String prenom, Adresse adresse, Date dateNaissance, ImageProfil imageProfil, Person mere, Person pere){
+    public Person(String nom, String prenom, Adresse adresse, Date dateNaissance, ImageProfil imageProfil, Person pere, Person mere){
         // this is a student
         this.nom = nom;
         this.nom = nom;
@@ -71,7 +71,7 @@ public class Person {
         this.pere = pere;
     }
 
-    public void update(String nom, String prenom, Adresse adresse, Date dateNaissance, ImageProfil imageProfil, Person mere, Person pere){
+    public void update(String nom, String prenom, Adresse adresse, Date dateNaissance, ImageProfil imageProfil, Person pere, Person mere){
         // this is a student
         this.nom = nom;
         this.prenom = prenom;

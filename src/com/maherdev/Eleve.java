@@ -1,13 +1,14 @@
 package com.maherdev;
 
 import java.util.Date;
+import java.util.ArrayList;
 
 public class Eleve extends Person{
     protected static int count = 0; // conteur
     protected int id;
 
     protected Classe classe;
-    protected Activite[] listeActivites;
+    protected ArrayList<Activite> listeActivites = new ArrayList<Activite>();
 
     public Eleve(String nom,
                  String prenom,
@@ -16,11 +17,18 @@ public class Eleve extends Person{
                  ImageProfil imageProfil,
                  Person pere,
                  Person mere){
-        super(nom, prenom, adresse, dateNaissance, imageProfil, mere, pere);
+        super(nom, prenom, adresse, dateNaissance, imageProfil, pere, mere);
         this.id = count++;
     }
 
-    public void update(String nom, String prenom, Adresse adresse, Date dateNaissance, ImageProfil imageProfil, Person mere, Person pere){
+    @Override
+    public void update(String nom,
+                       String prenom,
+                       Adresse adresse,
+                       Date dateNaissance,
+                       ImageProfil imageProfil,
+                       Person pere,
+                       Person mere){
         super.update(nom, prenom, adresse, dateNaissance, imageProfil, mere, pere);
     }
 
@@ -40,6 +48,24 @@ public class Eleve extends Person{
     }
 
     public void ajouterActivite(Activite activite){
+        // tester si l'eleve est inscri a cette activité
+        if(listeActivites.contains(activite)){
+            System.out.printf("l'eleve %s est deja inscri a cette activité", this.id);
+        }else{
+            this.listeActivites.add(activite);
+        }
+    }
+
+    public void afficherActivite(){
+        // tester si la liste des activités est vide ou pas
+        if(this.listeActivites.isEmpty()){
+            System.out.printf("L'eleve d'id: %s n'est pas inscri a aucune activité. ",this.id);
+        }else{
+            // afficher tous les activité de la liste activité
+            for(Activite activite:this.listeActivites){
+                activite.show();
+            }
+        }
     }
 
     public void setClasse(Classe classe){

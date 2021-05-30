@@ -59,7 +59,7 @@ public class Menu {
     // Gestion menu animateur
     private void showMenuAnimateur(){
         // clear board
-        this.clear();
+        clear();
 
         System.out.println("************** Menu Gestion Animateur **************\n");
         System.out.println("1. Ajouter animateur");
