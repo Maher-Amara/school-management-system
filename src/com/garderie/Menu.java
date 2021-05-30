@@ -44,13 +44,14 @@ public class Menu {
         System.exit(0);
     }
     private static void block(){
-        System.out.println("tape a key to exit ...");
+        System.out.println("tape a key to continue ...");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
     }
     public void mainLoop(){
         // boucler a l'infini
         while (true) {
+            // block();
             this.menuPrincipal();
         }
     }
@@ -127,15 +128,18 @@ public class Menu {
         clear();
 
         System.out.println("************** Menu Gestion Elèves **************\n");
-        System.out.println("1. Ajouter eleve");
-        System.out.println("2. Afficher eleve");
-        System.out.println("3. Mettre a jours eleve");
-        System.out.println("4. Supprimer eleve");
-        System.out.println("5. Lister eleves");
-        System.out.println("6. Ajouter eleve a une classe");
-        System.out.println("7. Ajouter eleve a une activité");
-        System.out.println("8. Facture eleve");
-        System.out.println("0. Retour menu principal");
+        System.out.println("1.  Ajouter eleve");
+        System.out.println("2.  Afficher eleve");
+        System.out.println("3.  Mettre a jours eleve");
+        System.out.println("4.  Supprimer eleve");
+        System.out.println("5.  Lister eleves");
+        System.out.println("6.  Ajouter eleve a une classe");
+        System.out.println("7.  Inscrire eleve a une activité");
+        System.out.println("8.  Update eleve classe");
+        System.out.println("9.  Descrire eleve d'une une activité");
+        System.out.println("10. Afficher activité eleve");
+        System.out.println("11. Facture eleve");
+        System.out.println("0.  Retour menu principal");
     }
     private void eleves() {
         //variable declaration
@@ -201,13 +205,36 @@ public class Menu {
                 break;
             case 8:
                 System.out.print("donner ID Eleve :");
+                idEleve = Integer.parseInt(scanner.nextLine());
+                System.out.print("donner ID Classe :");
+                idClasse = Integer.parseInt(scanner.nextLine());
+
+                school.addEleveClasse(idEleve,idClasse);
+                break;
+            case 9:
+                System.out.print("donner ID Eleve :");
+                idEleve = Integer.parseInt(scanner.nextLine());
+                System.out.print("donner ID Activite :");
+                idActivite = Integer.parseInt(scanner.nextLine());
+
+                school.deleteEleveActivite(idEleve,idActivite);
+                break;
+            case 10:
+                System.out.print("donner ID Eleve :");
+                idEleve = Integer.parseInt(scanner.nextLine());
+
+                school.showEleveActivite(idEleve);
+                break;
+
+            case 11:
+                System.out.print("donner ID Eleve :");
                 id = Integer.parseInt(scanner.nextLine());
 
                 school.factureEleve(id);
                 break;
 
             default:
-                System.out.println("veiller entrer un numero entre 0 et 5");
+                System.out.println("veiller entrer un numero entre 0 et 11");
         }
     }
 

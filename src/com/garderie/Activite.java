@@ -24,9 +24,9 @@ public class Activite {
     }
 
     public void show(){
-        System.out.printf("designation : %s", this.designation);
-        System.out.printf("code activite : %s", this.code);
-        System.out.printf("animateur : %s", this.animateur);
-        System.out.printf("fraisInscription : %s", this.fraisInscription);
+        System.out.printf("designation : %s\n", this.designation);
+        System.out.printf("code activite : %s\n", this.code);
+        System.out.printf("animateur : %s\n", this.animateur);
+        System.out.printf("fraisInscription : %s\n", this.fraisInscription);
     }
 }

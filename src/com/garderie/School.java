@@ -427,7 +427,6 @@ public class School {
             }
         System.out.println("");
     }
-
     public void addEleveClasse(int idEleve,int idClasse) {
         // recuperer eleve
         Eleve eleve = this.listeEleves[idEleve];
@@ -442,7 +441,6 @@ public class School {
             System.out.println("Eleve assigne au classe avec success");
         }
     }
-
     public void addEleveActivite(int idEleve, int idActivite) {
         //recuperer eleve
         Eleve eleve = this.listeEleves[idEleve];
@@ -491,8 +489,10 @@ public class School {
             }else{
                 // afficher tous les activité de la liste activité
                 for(int activiteID:eleve.listeActivites){
-                    this.listeActivites[activiteID].show();
+                    Activite acticite = this.listeActivites[activiteID];
+                    System.out.printf("%s - %s\n",acticite.id,acticite.designation);
                 }
+                System.out.println("\n");
             }
         }
     }
