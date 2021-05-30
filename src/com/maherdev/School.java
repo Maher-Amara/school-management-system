@@ -71,46 +71,24 @@ public class School {
         Adresse adresse;
         Scanner scanner = new Scanner(System.in);
 
-
         System.out.println("donner nom animaterur :");
-        nom = scanner.nextLine();
+        nom = Person.nom();
 
         System.out.println("donner prenom animaterur :");
-        prenom = scanner.nextLine();
+        prenom = Person.nom();
 
-        while (true){
-            try {
-                System.out.println("donner numero cin animaterur :");
-                cin = Integer.parseInt(scanner.nextLine());
-                break;
-            } catch (Exception e){
-                System.out.println("Error: le numero cin doit etre entier");
-            }
-        }
 
-        while (true){
-            try {
-                System.out.println("donner numero telephone animaterur :");
-                numeroTelephone = Integer.parseInt(scanner.nextLine());
-                break;
-            } catch (Exception e){
-                System.out.println("Error: le numero de thelephone doit etre entier");
-            }
-        }
+        System.out.println("donner numero cin animaterur :");
+        cin = Person.cin();
 
-        while (true){
-            try {
-                System.out.println("donner date naissance animaterur (JJ/MM/YYYY):");
-                String stringDate = scanner.nextLine();
-                dateNaissance = new Date(stringDate);
-                break;
-            } catch (Exception e){
-                System.out.println("Error: format non compatible");
-            }
-        }
+        System.out.println("donner numero telephone animaterur :");
+        numeroTelephone = Person.tel();
+
+        System.out.println("donner date naissance animaterur (JJ/MM/YYYY):");
+        dateNaissance = Person.date();
 
         System.out.println("donner prenom du pere:");
-        String prenomPere = scanner.nextLine();
+        String prenomPere = Person.nom();
         Person pere = new Person(nom,prenomPere); // create Person
 
         adresse = new Adresse(); // create Adresse from user input
@@ -168,44 +146,23 @@ public class School {
             return false;
         }else {
             System.out.println("donner nom animaterur :");
-            nom = scanner.nextLine();
+            nom = Person.nom();
 
             System.out.println("donner prenom animaterur :");
-            prenom = scanner.nextLine();
+            prenom = Person.nom();
 
-            while (true) {
-                try {
-                    System.out.println("donner numero cin animaterur :");
-                    cin = Integer.parseInt(scanner.nextLine());
-                    break;
-                } catch (Exception e) {
-                    System.out.println("Error: le numero cin doit etre entier");
-                }
-            }
+            System.out.println("donner numero cin animaterur :");
+            cin = Person.cin();
 
-            while (true) {
-                try {
-                    System.out.println("donner numero telephone animaterur :");
-                    numeroTelephone = Integer.parseInt(scanner.nextLine());
-                    break;
-                } catch (Exception e) {
-                    System.out.println("Error: le numero de thelephone doit etre entier");
-                }
-            }
+            System.out.println("donner numero telephone animaterur :");
+            numeroTelephone = Person.tel();
 
-            while (true) {
-                try {
-                    System.out.println("donner date naissance animaterur (JJ/MM/YYYY):");
-                    String stringDate = scanner.nextLine();
-                    dateNaissance = new Date(stringDate);
-                    break;
-                } catch (Exception e) {
-                    System.out.println("Error: format non compatible");
-                }
-            }
+            System.out.println("donner date naissance animaterur (JJ/MM/YYYY):");
+            dateNaissance = Person.date();
+
 
             System.out.println("donner prenom du pere:");
-            String prenomPere = scanner.nextLine();
+            String prenomPere = Person.nom();
             Person pere = new Person(nom, prenomPere);
 
             adresse = new Adresse(); // create Adresse from user input
@@ -268,65 +225,45 @@ public class School {
 
 
         System.out.println("donner nom eleve :");
-        nom = scanner.nextLine();
+        nom = Person.nom();
 
         System.out.println("donner prenom eleve :");
-        prenom = scanner.nextLine();
+        prenom = Person.nom();
 
         System.out.println("donner prenom du pere :");
-        String prenomPere = scanner.nextLine();
+        String prenomPere = Person.nom();
 
         System.out.println("donner prenom du grand-pere :");
-        String prenomGrandPere = scanner.nextLine();
+        String prenomGrandPere = Person.nom();
 
         System.out.println("donner nom du mere :");
-        String nomMere = scanner.nextLine();
+        String nomMere = Person.nom();
 
         System.out.println("donner prenom du mere :");
-        String prenomMere = scanner.nextLine();
+        String prenomMere = Person.nom();
 
-        while (true){
-            try {
-                System.out.println("donner numero cin du pere :");
-                cin = Integer.parseInt(scanner.nextLine());
-                break;
-            } catch (Exception e){
-                System.out.println("Error: le numero cin doit etre entier");
-            }
-        }
+        System.out.println("donner numero cin du pere :");
+        cin = Person.cin();
 
-        while (true){
-            try {
-                System.out.println("donner numero telephone du pere :");
-                numeroTelephone = Integer.parseInt(scanner.nextLine());
-                break;
-            } catch (Exception e){
-                System.out.println("Error: le numero de thelephone doit etre entier");
-            }
-        }
+        System.out.println("donner numero telephone du pere :");
+        numeroTelephone = Person.tel();
 
-        while (true){
-            try {
-                System.out.println("donner date naissance eleve (JJ/MM/YYYY):");
-                String stringDate = scanner.nextLine();
-                dateNaissance = new Date(stringDate);
-                break;
-            } catch (Exception e){
-                System.out.println("Error: format non compatible");
-            }
-        }
+        System.out.println("donner date naissance eleve (JJ/MM/YYYY):");
+        dateNaissance = Person.date();
 
         Person mere = new Person(nomMere,prenomMere);
         Person gradPere = new Person(nom,prenomGrandPere);
+
         Person pere = new Person(cin,nom, prenomPere, numeroTelephone, gradPere);
+
         adresse = new Adresse(); // create Adresse from user input
+
         ImageProfil imageProfil = new ImageProfil(); // create get image from user input
 
-
-        // creation de l'instance animateur
+        // creation de l'instance eleve
         Eleve eleve = new Eleve(nom, prenom,adresse, dateNaissance, imageProfil,pere, mere);
 
-        // ajouter animateur a la liste des animateurs
+        // ajouter eleve a la liste des eleves
         if (eleve.id == this.nombreElevesMax){
             System.out.println("nombre maximal des Eleves atteint");
         }else{
@@ -375,52 +312,33 @@ public class School {
             return false;
         }else {
             System.out.println("donner nom animaterur :");
-            nom = scanner.nextLine();
+            nom = Person.nom();
 
             System.out.println("donner prenom animaterur :");
-            prenom = scanner.nextLine();
+            prenom = Person.nom();
 
-            while (true) {
-                try {
-                    System.out.println("donner numero cin animaterur :");
-                    cin = Integer.parseInt(scanner.nextLine());
-                    break;
-                } catch (Exception e) {
-                    System.out.println("Error: le numero cin doit etre entier");
-                }
-            }
+            System.out.println("donner numero cin animaterur :");
+            cin = Person.cin();
 
-            while (true) {
-                try {
-                    System.out.println("donner numero telephone animaterur :");
-                    numeroTelephone = Integer.parseInt(scanner.nextLine());
-                    break;
-                } catch (Exception e) {
-                    System.out.println("Error: le numero de thelephone doit etre entier");
-                }
-            }
+            System.out.println("donner numero telephone animaterur :");
+            numeroTelephone = Person.tel();
 
-            while (true) {
-                try {
-                    System.out.println("donner date naissance animaterur (JJ/MM/YYYY):");
-                    String stringDate = scanner.nextLine();
-                    dateNaissance = new Date(stringDate);
-                    break;
-                } catch (Exception e) {
-                    System.out.println("Error: format non compatible");
-                }
-            }
+            System.out.println("donner date naissance animaterur (JJ/MM/YYYY):");
+            dateNaissance = Person.date();
 
             System.out.println("donner prenom du pere:");
-            String prenomPere = scanner.nextLine();
+            String prenomPere = Person.nom();
             Person pere = new Person(nom, prenomPere);
 
-            adresse = new Adresse(); // create Adresse from user input
+            // create Adresse from user input
+            adresse = new Adresse();
 
-            ImageProfil imageProfil = new ImageProfil(); // create get image from user input
+            // create get image from user input
+            ImageProfil imageProfil = new ImageProfil();
 
             // mise a jours animateur
             animateur.update(cin, nom, prenom, numeroTelephone, dateNaissance, adresse, imageProfil, pere);
+
             return true;
         }
     }
@@ -481,38 +399,37 @@ public class School {
 
 
         System.out.println("donner nom eleve :");
-        nom = scanner.nextLine();
+        nom = Person.nom();
 
         System.out.println("donner prenom eleve :");
-        prenom = scanner.nextLine();
+        prenom = Person.nom();
 
         System.out.println("donner prenom du pere :");
-        String prenomPere = scanner.nextLine();
+        String prenomPere = Person.nom();
 
         System.out.println("donner prenom du grand-pere :");
-        String prenomGrandPere = scanner.nextLine();
+        String prenomGrandPere = Person.nom();
 
         System.out.println("donner nom du mere :");
-        String nomMere = scanner.nextLine();
+        String nomMere = Person.nom();
 
         System.out.println("donner prenom du mere :");
-        String prenomMere = scanner.nextLine();
+        String prenomMere = Person.nom();
 
-        while (true){
-            try {
-                System.out.println("donner numero cin du pere :");
-                cin = Integer.parseInt(scanner.nextLine());
-                break;
-            } catch (Exception e){
-                System.out.println("Error: le numero cin doit etre entier");
-            }
-        }
+        System.out.println("donner numero CIN du pere :");
+        cin = Person.cin();
 
         while (true){
             try {
                 System.out.println("donner numero telephone du pere :");
-                numeroTelephone = Integer.parseInt(scanner.nextLine());
-                break;
+
+                int input = Integer.parseInt(scanner.nextLine());
+                if (input < 10000000 || input > 99999999){
+                    System.out.print("Error: numero telephone doit avoir 8 chiffres !");
+                }else {
+                    numeroTelephone = input;
+                    break;
+                }
             } catch (Exception e){
                 System.out.println("Error: le numero de thelephone doit etre entier");
             }

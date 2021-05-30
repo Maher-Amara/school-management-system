@@ -189,6 +189,7 @@ public class Menu {
                 System.out.print("donner ID Eleve :");
                 id = Integer.parseInt(scanner.nextLine());
 
+
                 school.addEleveClasse();
                 break;
             case 7:
