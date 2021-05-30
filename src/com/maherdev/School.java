@@ -5,14 +5,14 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class School {
-    int nombreClasseMax = 50;
-    int nombreElevesMax = 1000;
-    int nombreActiviteMax = 100;
-    int nombreAnimateurMax = 100;
-    Classe[] listeClasses = new Classe[nombreClasseMax];
-    Eleve[] listeEleves = new Eleve[nombreElevesMax];
-    Activite[] listeActivites = new Activite[nombreActiviteMax];
-    Animateur[] listeAnimateurs = new Animateur[nombreAnimateurMax];
+    private int nombreClasseMax = 50;
+    private int nombreElevesMax = 1000;
+    private int nombreActiviteMax = 100;
+    private int nombreAnimateurMax = 100;
+    private Classe[] listeClasses = new Classe[nombreClasseMax];
+    private Eleve[] listeEleves = new Eleve[nombreElevesMax];
+    private Activite[] listeActivites = new Activite[nombreActiviteMax];
+    private Animateur[] listeAnimateurs = new Animateur[nombreAnimateurMax];
 
     public School(){
     }
@@ -39,7 +39,7 @@ public class School {
                 new Adresse(34,"Houssine Bou Zayene","Kalaa Sghira", 4021, "Sousse"),
                 new ImageProfil("assets/imageProfil1.png"),
                 new Person("Amara","Mohamed Naceur")
-                );
+        );
         listeAnimateurs[2] = new Animateur(
                 123458,
                 "Amara",
@@ -49,7 +49,40 @@ public class School {
                 new Adresse(34,"Houssine Bou Zayene","Kalaa Sghira", 4021, "Sousse"),
                 new ImageProfil("assets/imageProfil2.png"),
                 new Person("Amara","Mohamed Naceur")
-                );
+        );
+
+        listeActivites[0] = new Activite(
+                123458,
+                listeAnimateurs[0],
+                "Formation photoshop",
+                123.4f
+        );
+        listeActivites[1] = new Activite(
+                123458,
+                listeAnimateurs[0],
+                "Formation JavaEE",
+                600f
+        );
+        listeActivites[2] = new Activite(
+                123458,
+                listeAnimateurs[0],
+                "Formation Python Data Science",
+                450f
+        );
+        listeEleves[0] = new Eleve(
+                "maher",
+                "amara",
+                new Adresse(34,"Houssine Bou Zayene","Kalaa Sghira", 4021, "Sousse"),
+                new Date("03/10/1997"),
+                new ImageProfil("assets/imageProfil.png"),
+                new Person(1234678,
+                        "amara",
+                        "med naceur",
+                        26254253,
+                        new Person("Amara","youssef")
+                ),
+                new Person("jannette","guith")
+        );
     }
 
     // Gestion animateur
@@ -350,31 +383,134 @@ public class School {
          */
 
         // check if object exists
-        if (this.listeAnimateurs[idEleve] == null){
+        if (this.listeEleves[idEleve] == null){
             return false;
         }else{
             // replace the object with null
             // Note: JVM garbage collector will delete it from ram automatically once we delete it's access point
             // voir : https://www.jmdoudoux.fr/java/dej/chap-gestion_memoire.htm#gestion_memoire-1
-            this.listeAnimateurs[idEleve] = null;
+            this.listeEleves[idEleve] = null;
             return true;
         }
     }
     public void showElevelist() {
-        System.out.println("Liste  Animateurs :\n");
-        for (Animateur animateur:this.listeAnimateurs) {
-            try{
-                System.out.printf("%s - %s %s \n",animateur.id,animateur.nom,animateur.prenom);
-            }catch (Exception ignored){}
-        }
+        System.out.println("Liste  Eleves :\n");
+        for (Eleve eleve:this.listeEleves) {
+            if(eleve != null)
+                System.out.printf("%s - %s %s \n",eleve.id,eleve.nom,eleve.prenom);
+            }
         System.out.println("");
+    }
 
+    public void addEleveClasse(int idEleve,int idClasse) {
+        // recuperer eleve
+        Eleve eleve = this.listeEleves[idEleve];
+
+        // check if object exists
+        if (eleve == null){
+            System.out.println("eleve Introuvable");
+        }else if(this.listeClasses[idClasse] == null){
+            System.out.println("Classe Introuvable");
+        }else{
+            eleve.setClasse(idClasse);
+            System.out.println("Eleve assigne au classe avec success");
+        }
     }
-    public void addEleveClasse() {
+
+    public void addEleveActivite(int idEleve, int idActivite) {
+        //recuperer eleve
+        Eleve eleve = this.listeEleves[idEleve];
+
+        if(eleve == null){ // tester si l'eleve existe
+            System.out.printf("L'eleve d'ID : %s est introuvable",idEleve);
+        }else if(this.listeActivites[idActivite] == null){ //tester si l'activité existe
+            System.out.printf("L'activite d'ID : %s introuvable",idActivite);
+        }else{
+            // ajouter activité eleve
+            if(eleve.ajouterActivite(idActivite)){
+                System.out.printf("l'eleve %s est inscri a cette activité avec success",idEleve);
+            }else{
+                System.out.printf("l'eleve %s est deja inscri a l'activité %s", idEleve, idActivite);
+            }
+        }
     }
-    public void addEleveActivite() {
+    public void deleteEleveActivite(int idEleve, int idActivite){
+        //recuperer eleve
+        Eleve eleve = this.listeEleves[idEleve];
+
+        if(eleve == null){ // tester si l'eleve existe
+            System.out.printf("L'eleve d'ID : %s est introuvable",idEleve);
+        }else if(this.listeActivites[idActivite] == null){ //tester si l'activité existe
+            System.out.printf("L'activite d'ID : %s introuvable",idActivite);
+        }else{
+            // ajouter activité eleve
+            if(eleve.deleteActivite(idActivite)){
+                System.out.printf("L'activité %s de l'eleve %s est suprimé avec success",idEleve);
+            }else{
+                System.out.printf("Erreur : l'eleve %s n'est pas deja inscri a l'activité %s", idEleve, idActivite);
+            }
+        }
     }
-    public void factureEleve() {
+    public void showEleveActivite(int idEleve){
+        // recuperer eleve
+        Eleve eleve = listeEleves[idEleve];
+
+        // tester si l'eleve existe
+        if ( eleve == null){
+            System.out.printf("l'eleve d'id : %s n'est pas existent", idEleve);
+        }else{
+            // tester si la liste des activité de l'eleve est vide ou pas
+            if(eleve.listeActivites.isEmpty()){
+                System.out.printf("L'eleve d'id: %s n'est pas inscri a aucune activité. ",eleve.id);
+            }else{
+                // afficher tous les activité de la liste activité
+                for(int activiteID:eleve.listeActivites){
+                    this.listeActivites[activiteID].show();
+                }
+            }
+        }
+    }
+    public void factureEleve(int idEleve) {
+        //recuperation de l'eleve
+        Eleve eleve = listeEleves[idEleve];
+
+        // tester si l'eleve existe
+        if (eleve == null){
+            System.out.printf("l'eleve d'id : %s n'est pas existent", idEleve);
+        }else{
+            //facturer eleve
+            this.factureEleve(eleve);
+        }
+    }
+    private void factureEleve(Eleve eleve){
+        /*
+         * frais mensuel d'inscription au activités selon niveau scolaire selon les activités suivies
+         */
+        float total = 0f;
+
+        // recherche sur les activité
+        System.out.println("************ Facture ************");
+        System.out.printf("\nNom et Prenom : %s %s \n", eleve.nom, eleve.prenom);
+
+        // recuperer la classe de l'eleve
+        Classe classe = this.listeClasses[eleve.idClasse];
+
+        try {
+            total += classe.fraisInscription; // compter les frais d'inscription de classe
+            System.out.printf("Classe %s : %s", classe.nom, classe.fraisInscription);
+        } catch (Exception ignore) {}
+        System.out.println("\n activités :");
+        System.out.println("--------------------------------------");
+        for(int idActivite:eleve.listeActivites){
+            Activite activite = this.listeActivites[idActivite];
+
+            total += activite.fraisInscription; // compter les frais d'inscription d' activité'
+
+            System.out.printf("activite %s : %s DT",activite.designation,activite.fraisInscription);
+        }
+        System.out.println("--------------------------------------");
+        System.out.printf("Total : %s",total);
+
     }
 
     // Gestion classes
@@ -494,10 +630,10 @@ public class School {
         return false;
     }
     public void showActivitelist() {
-        System.out.println("Liste Class :\n");
+        System.out.println("Liste Activites :\n");
         for (Activite activite:this.listeActivites) {
             try{
-                System.out.printf("%s - %s %s \n",activite.id,activite.designation);
+                System.out.printf("%s - %s\n",activite.id,activite.designation);
             }catch (Exception ignored){}
         }
         System.out.println("");

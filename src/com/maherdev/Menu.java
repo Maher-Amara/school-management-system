@@ -187,22 +187,24 @@ public class Menu {
                 break;
             case 6:
                 System.out.print("donner ID Eleve :");
-                id = Integer.parseInt(scanner.nextLine());
+                int idEleve = Integer.parseInt(scanner.nextLine());
+                System.out.print("donner ID Classe :");
+                int idClasse = Integer.parseInt(scanner.nextLine());
 
-
-                school.addEleveClasse();
+                school.addEleveClasse(idEleve,idClasse);
                 break;
             case 7:
                 System.out.print("donner ID Eleve :");
-                id = Integer.parseInt(scanner.nextLine());
-
-                school.addEleveActivite();
+                idEleve = Integer.parseInt(scanner.nextLine());
+                System.out.print("donner ID Activité :");
+                int idActivite = Integer.parseInt(scanner.nextLine());
+                school.addEleveActivite(idEleve,idActivite);
                 break;
             case 8:
                 System.out.print("donner ID Eleve :");
                 id = Integer.parseInt(scanner.nextLine());
 
-                school.factureEleve();
+                school.factureEleve(id);
                 break;
 
             default:
@@ -248,7 +250,7 @@ public class Menu {
                 this.showMenuClasses();
                 break;
             case 4:
-                this.showMenuCours();
+                this.showMenuActivite();
                 break;
             default:
                 System.out.println("veiller entrer un numero entre 0 et 4");
@@ -256,24 +258,24 @@ public class Menu {
     }
 
 
-    // Gestion menu cours
-    private void showMenuCours(){
+    // Gestion menu activit"
+    private void showMenuActivite(){
         // clear board
         this.clear();
 
         System.out.println("************** Menu Gestion Cours **************\n");
-        System.out.println("1. Ajouter cour");
-        System.out.println("2. Mettre a jours cour");
-        System.out.println("3. Supprimer cour");
-        System.out.println("4. Lister cours");
+        System.out.println("1. Ajouter activite");
+        System.out.println("2. Mettre a jours activite");
+        System.out.println("3. Supprimer activite");
+        System.out.println("4. Lister activite");
         System.out.println("0. Retour menu principal");
     }
-    private void cours() {
+    private void activite() {
         //variable declaration
         int Choice;
 
         // afficer menu cours
-        this.showMenuCours();
+        this.showMenuActivite();
 
         // recuperer le choix de l'utilisateur
         Choice = this.getUserChoice();
@@ -293,13 +295,12 @@ public class Menu {
                 this.showMenuClasses();
                 break;
             case 4:
-                this.showMenuCours();
+                this.showMenuActivite();
                 break;
             default:
                 System.out.println("veiller entrer un numero entre 0 et 4");
         }
     }
-
 
     // Gestion menu principal
     private void showMenuPrincipal(){
@@ -310,7 +311,7 @@ public class Menu {
         System.out.println("\n************** Menu Principal **************\n");
         System.out.println("1. Gestion Animateur ");
         System.out.println("2. Gestion Elèves ");
-        System.out.println("3. Gestion Classes ");
+        System.out.println("3. Gestion Activite ");
         System.out.println("4. Gestion Cours");
         System.out.println("0. Exit");
     }
@@ -339,7 +340,7 @@ public class Menu {
                 this.classes();
                 break;
             case 4:
-                this.cours();
+                this.activite();
                 break;
             default:
                 System.out.println("veiller entrer un numero entre 0 et 4");

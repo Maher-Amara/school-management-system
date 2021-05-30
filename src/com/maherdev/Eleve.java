@@ -7,8 +7,8 @@ public class Eleve extends Person{
     protected static int count = 0; // conteur
     protected int id;
 
-    protected Classe classe;
-    protected ArrayList<Activite> listeActivites = new ArrayList<Activite>();
+    protected int idClasse;
+    protected ArrayList<Integer> listeActivites = new ArrayList<Integer>();
 
     public Eleve(String nom,
                  String prenom,
@@ -47,52 +47,28 @@ public class Eleve extends Person{
         this.imageProfil.show();
     }
 
-    public void ajouterActivite(Activite activite){
+    public boolean ajouterActivite(int activiteID){
         // tester si l'eleve est inscri a cette activité
-        if(listeActivites.contains(activite)){
-            System.out.printf("l'eleve %s est deja inscri a cette activité", this.id);
+        if(listeActivites.contains(activiteID)){
+            return false;
         }else{
-            this.listeActivites.add(activite);
+            this.listeActivites.add(activiteID);
+            return true;
         }
     }
 
-    public void afficherActivite(){
-        // tester si la liste des activités est vide ou pas
-        if(this.listeActivites.isEmpty()){
-            System.out.printf("L'eleve d'id: %s n'est pas inscri a aucune activité. ",this.id);
+    public boolean deleteActivite(int activiteID){
+        // tester si l'eleve est inscri a cette activité
+        if(listeActivites.contains(activiteID)){
+            this.listeActivites.remove(activiteID);
+            return true;
         }else{
-            // afficher tous les activité de la liste activité
-            for(Activite activite:this.listeActivites){
-                activite.show();
-            }
+            return false;
         }
     }
 
-    public void setClasse(Classe classe){
+    public void setClasse(int idClasse){
         // modifier et ajouter
-        this.classe = classe;
-    }
-
-    public void facture(){
-        /*
-         * frais mensuel d'inscription au activités selon niveau scolaire selon les activités suivies
-         */
-        float total = 750.5f;
-
-        // recherche sur les activité
-        System.out.println("************ Facture ************");
-        System.out.printf("\nNom et Prenom : %s %s \n", this.nom, this.prenom);
-
-        System.out.printf(" %s : %s",this.classe.nom, this.classe.fraisInscription);
-
-        System.out.println("\n activités :");
-        System.out.println("--------------------------------------");
-        System.out.printf("activité 1 : 1234.450 DT");
-        System.out.printf("activité 2 : 1234.450 DT");
-        System.out.printf("activité 3 : 1234.450 DT");
-        System.out.printf("activité 4 : 1234.450 DT");
-        System.out.println("--------------------------------------");
-        System.out.printf("Total : %s",total);
-
+        this.idClasse = idClasse;
     }
 }
