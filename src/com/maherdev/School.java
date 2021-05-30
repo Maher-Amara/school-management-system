@@ -506,10 +506,10 @@ public class School {
 
             total += activite.fraisInscription; // compter les frais d'inscription d' activité'
 
-            System.out.printf("activite %s : %s DT",activite.designation,activite.fraisInscription);
+            System.out.printf("activite %s : %s DT \n",activite.designation,activite.fraisInscription);
         }
         System.out.println("--------------------------------------");
-        System.out.printf("Total : %s",total);
+        System.out.printf("Total : %s DT",total);
 
     }
 
