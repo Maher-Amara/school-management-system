@@ -1,4 +1,4 @@
-package com.maherdev;
+package com.garderie;
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -7,7 +7,8 @@ public class Eleve extends Person{
     protected static int count = 0; // conteur
     protected int id;
 
-    protected int idClasse;
+    protected int idClasse = -1;
+
     protected ArrayList<Integer> listeActivites = new ArrayList<Integer>();
 
     public Eleve(String nom,

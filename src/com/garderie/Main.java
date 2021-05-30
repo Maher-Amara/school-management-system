@@ -1,6 +1,4 @@
-package com.maherdev;
-
-import java.util.Scanner;
+package com.garderie;
 
 public class Main {
     public static void main(String[] args) {

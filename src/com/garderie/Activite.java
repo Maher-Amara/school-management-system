@@ -1,4 +1,4 @@
-package com.maherdev;
+package com.garderie;
 
 public class Activite {
     protected static int count = 0; // conteur

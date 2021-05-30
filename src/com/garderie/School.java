@@ -1,4 +1,4 @@
-package com.maherdev;
+package com.garderie;
 
 
 import java.util.Date;
@@ -82,6 +82,32 @@ public class School {
                         new Person("Amara","youssef")
                 ),
                 new Person("jannette","guith")
+        );
+        listeEleves[1] = new Eleve(
+                "hamza",
+                "allani",
+                new Adresse(34,"Houssine Bou Zayene","Kalaa Sghira", 4021, "Sousse"),
+                new Date("03/10/1997"),
+                new ImageProfil("assets/imageProfil.png"),
+                new Person(1234678,
+                        "amara",
+                        "med naceur",
+                        26254253,
+                        new Person("Amara","youssef")
+                ),
+                new Person("jannette","guith")
+        );
+        listeClasses[0] = new Classe(
+                "3 Info G1.1",
+                5000
+        );
+        listeClasses[1] = new Classe(
+                "3 Info G1.2",
+                5000
+        );
+        listeClasses[2] = new Classe(
+                "2 MTIC G2",
+                5000
         );
     }
 
@@ -489,28 +515,26 @@ public class School {
         float total = 0f;
 
         // recherche sur les activité
-        System.out.println("************ Facture ************");
-        System.out.printf("\nNom et Prenom : %s %s \n", eleve.nom, eleve.prenom);
+        System.out.println("\n\n************ Facture ************");
+        System.out.printf("\nNom et Prenom : %s %s \n\n\n", eleve.nom, eleve.prenom);
 
-        // recuperer la classe de l'eleve
-        Classe classe = this.listeClasses[eleve.idClasse];
-
-        try {
+        // tester si l'eleve appartint a une classe
+        if (eleve.idClasse != -1){
+            // recuperer la classe de l'eleve
+            Classe classe = this.listeClasses[eleve.idClasse];
             total += classe.fraisInscription; // compter les frais d'inscription de classe
-            System.out.printf("Classe %s : %s", classe.nom, classe.fraisInscription);
-        } catch (Exception ignore) {}
-        System.out.println("\n activités :");
+            System.out.printf("- classe %s : %s DT\n", classe.nom, classe.fraisInscription);
+        }
+
+        System.out.println("\nActivités :");
         System.out.println("--------------------------------------");
         for(int idActivite:eleve.listeActivites){
-            Activite activite = this.listeActivites[idActivite];
-
+            Activite activite = this.listeActivites[idActivite]; // recuperation de l'activité
             total += activite.fraisInscription; // compter les frais d'inscription d' activité'
-
-            System.out.printf("activite %s : %s DT \n",activite.designation,activite.fraisInscription);
+            System.out.printf("- %s : %s DT \n",activite.designation,activite.fraisInscription);
         }
         System.out.println("--------------------------------------");
-        System.out.printf("Total : %s DT",total);
-
+        System.out.printf("Total : %s DT \n\n",total);
     }
 
     // Gestion classes

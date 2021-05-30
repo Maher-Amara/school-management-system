@@ -1,4 +1,4 @@
-package com.maherdev;
+package com.garderie;
 
 import java.util.Date;
 import java.util.Scanner;
@@ -192,7 +192,6 @@ public class Person {
         /*
          * date input controle
          * required
-         * 7 to 8 caracters
          * format JJ/MM/YYYY
          */
         Scanner scanner = new Scanner(System.in);

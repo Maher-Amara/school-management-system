@@ -1,6 +1,5 @@
-package com.maherdev;
+package com.garderie;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {

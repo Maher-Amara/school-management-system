@@ -1,4 +1,4 @@
-package com.maherdev;
+package com.garderie;
 
 import java.util.Scanner;
 
