@@ -1,6 +1,6 @@
 ![school Management System](https://user-images.githubusercontent.com/61565955/133947449-ba0b8ed5-3a8e-4972-a54e-bc7f42df50e2.png)
 
-Java console application for school management system
+Java console application for **School Management System**
 
 1) Student management
 2) Employee management
@@ -16,7 +16,7 @@ Java console application for school management system
 
 # Acknowledgements:
 
-The work in this project was completed as part of the curriculum for Polytechnic School of Sousse.
+The work in this project was completed as part of the curriculum for [Polytechnic School of Sousse](https://www.polytecsousse.tn/) .
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/61565955/133947540-cf5ff61b-8935-413b-b7ea-25289efe958e.png" alt="logo-polytech" style="max-width: 100%;">
