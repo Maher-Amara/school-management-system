@@ -1,5 +1,7 @@
 ![school Management System](https://user-images.githubusercontent.com/61565955/133947449-ba0b8ed5-3a8e-4972-a54e-bc7f42df50e2.png)
 
+![Build Status](https://travis-ci.org/Payum/Payum.png?branch=master)
+
 Java console application for **School Management System**
 
 1) Student management
